@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Models;
 using Microsoft.EntityFrameworkCore;
-
+using RazorPagesMovie.Repositories;
 
 namespace RazorPagesMovie
 {
@@ -38,6 +38,7 @@ namespace RazorPagesMovie
                 options.UseSqlite(Configuration.GetConnectionString("MovieContext"))
             );
 
+            services.AddTransient<MovieRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

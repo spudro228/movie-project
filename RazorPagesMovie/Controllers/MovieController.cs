@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
+using RazorPagesMovie.Repositories;
 
 namespace MovieApi.Controller
 {
@@ -16,23 +17,22 @@ namespace MovieApi.Controller
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly RazorPagesMovieContext _context;
-
-        public MovieController(RazorPagesMovieContext context)
+        private readonly MovieRepository _repository;
+        public MovieController(MovieRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movie>>> GetItems()
         {
-            return await _context.Movie.ToListAsync();
+            return Ok(await _repository.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetById(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
+            var movie = await _repository.FindAsync(id);
 
             if (movie == null)
             {
