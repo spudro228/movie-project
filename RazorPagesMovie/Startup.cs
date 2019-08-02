@@ -38,7 +38,7 @@ namespace RazorPagesMovie
                 options.UseSqlite(Configuration.GetConnectionString("MovieContext"))
             );
 
-            services.AddTransient<MovieRepository>();
+            services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

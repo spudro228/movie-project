@@ -4,7 +4,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Repositories
 {
-    interface IMovieRepository
+    public interface IMovieRepository
     {
         Task<IEnumerable<Movie>> ToListAsync();
 

@@ -17,8 +17,8 @@ namespace MovieApi.Controller
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly MovieRepository _repository;
-        public MovieController(MovieRepository repository)
+        private readonly IMovieRepository _repository;
+        public MovieController(IMovieRepository repository)
         {
             _repository = repository;
         }
@@ -40,6 +40,6 @@ namespace MovieApi.Controller
             }
 
             return movie;
-        }    
+        }
     }
 }
