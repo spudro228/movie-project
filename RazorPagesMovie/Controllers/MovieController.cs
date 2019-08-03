@@ -39,7 +39,7 @@ namespace MovieApi.Controller
                 return NotFound();
             }
 
-            return movie;
+            return Ok(movie);
         }
     }
 }
