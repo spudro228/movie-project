@@ -29,7 +29,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Movie == null)
             {
@@ -53,7 +53,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.ID))
+                if (!MovieExists(Movie.Id))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace RazorPagesMovie.Pages.Movies
 
         private bool MovieExists(int id)
         {
-            return _context.Movie.Any(e => e.ID == id);
+            return _context.Movie.Any(e => e.Id == id);
         }
     }
 }

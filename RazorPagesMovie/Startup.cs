@@ -34,12 +34,13 @@ namespace RazorPagesMovie
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<RazorPagesMovieContext>(options => 
-                options.UseSqlite(Configuration.GetConnectionString("MovieContext"))
+            services.AddDbContext<RazorPagesMovieContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
             );
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IMovieRepository, MovieRepository>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

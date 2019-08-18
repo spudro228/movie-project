@@ -25,18 +25,8 @@ namespace RazorPagesMovie
 
                 try
                 {
-                    var context = services.GetRequiredService<RazorPagesMovieContext>();
-
-                    // @link https://stackoverflow.com/a/56599878
-                    if (context.Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
-                    {
-                        context.Database.EnsureCreated();
-                    }
-                    else
-                    {
-                        context.Database.Migrate();
-                    }
-
+//                    var context = services.GetRequiredService<RazorPagesMovieContext>();
+                    
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

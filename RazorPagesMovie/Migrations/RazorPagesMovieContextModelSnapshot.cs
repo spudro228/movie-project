@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Migrations
@@ -14,25 +15,33 @@ namespace RazorPagesMovie.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Genre");
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("Rating");
+                    b.Property<string>("Rating")
+                        .IsRequired()
+                        .HasMaxLength(5);
 
                     b.Property<DateTime>("ReleaseDate");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Movie");
                 });

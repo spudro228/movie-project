@@ -9,7 +9,8 @@ namespace RazorPagesMovie.Models
 {
     public class Movie
     {
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [StringLength(60, MinimumLength = 3)]
         [Required]
